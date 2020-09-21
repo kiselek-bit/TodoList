@@ -20,10 +20,10 @@ function App() {
     const [filter, setFilter] = useState <FilterValuesType>('all')
     let tasksForTodoList = tasks
     if(filter === 'active') {
-        tasksForTodoList = tasks.filter(t => t.isDone === false)
+        tasksForTodoList = tasks.filter(t => !t.isDone)
     }
     if(filter === "completed") {
-        tasksForTodoList = tasks.filter(t => t.isDone === true)
+        tasksForTodoList = tasks.filter(t => t.isDone)
     }
 
     function changeFilter (value: FilterValuesType) {
