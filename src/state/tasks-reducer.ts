@@ -30,8 +30,9 @@ type ActionType = RemoveTaskActionType | AddTaskActionType |
     ChangeTaskStatusActionType | ChangeTaskTitleActionType |
     AddTodolistActionType | RemoveTodolistActionType
 
+let initialState: TasksStateType = {}
 
-export const tasksReducer = (state: TasksStateType, action: ActionType) => {
+export const tasksReducer = (state: TasksStateType = initialState, action: ActionType) => {
     switch (action.type) {
         case "REMOVE-TASK":
             return {
@@ -41,7 +42,7 @@ export const tasksReducer = (state: TasksStateType, action: ActionType) => {
         case "ADD-TASK":
             return {
                 ...state,
-                [action.todolistID]: [{id: '4', title: action.title, isDone: false}, ...state[action.todolistID]]
+                [action.todolistID]: [{id: v1(), title: action.title, isDone: false}, ...state[action.todolistID]]
             }
         case "CHANGE-TASK-STATUS":
             let newState = {...state}
@@ -60,6 +61,7 @@ export const tasksReducer = (state: TasksStateType, action: ActionType) => {
             let tasks = [...newState[action.todolistID]]
             let tasksCopy = tasks.map(t => {
                 if (t.id === action.taskId) {
+                    debugger
                     return {...t, title: action.title}
                 } else {
                     return t
@@ -69,10 +71,11 @@ export const tasksReducer = (state: TasksStateType, action: ActionType) => {
             return newState
         }
         case "ADD-TODOLIST": {
-            return {
-                ...state,
-                [action.todolistId]: []
-            }
+            const stateCopy = {...state};
+
+            stateCopy[action.todolistId] = [];
+
+            return stateCopy;
         }
         case "REMOVE-TODOLIST": {
             const stateCopy = {...state}
@@ -80,7 +83,7 @@ export const tasksReducer = (state: TasksStateType, action: ActionType) => {
             return stateCopy
         }
         default:
-            throw new Error('I don"t understand type')
+            return state
     }
 }
 
