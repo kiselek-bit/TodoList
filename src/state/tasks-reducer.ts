@@ -61,7 +61,6 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
             let tasks = [...newState[action.todolistID]]
             let tasksCopy = tasks.map(t => {
                 if (t.id === action.taskId) {
-                    debugger
                     return {...t, title: action.title}
                 } else {
                     return t

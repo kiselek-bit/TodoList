@@ -1,12 +1,10 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useCallback} from "react";
 import {FilterValuesType, TaskType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 import {Button, Checkbox, IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "./state/store";
-import {TodolistType} from "./AppWithReduxs";
+import {Task} from "./Task";
 
 type PropsType = {
     id: string
@@ -23,18 +21,32 @@ type PropsType = {
 }
 
 
-export function Todolist(props: PropsType) {
+export const Todolist = React.memo((props: PropsType) => {
 
-    const onAllClickHandler = () => props.changeFilter(props.id, 'all')
-    const onActiveClickHandler = () => props.changeFilter(props.id, 'active')
-    const onCompletedClickHandler = () => props.changeFilter(props.id, 'completed')
+    let tasksForTodoList = props.tasks
+    if (props.filter === 'active') {
+        tasksForTodoList = props.tasks.filter(t => !t.isDone)
+    }
+    if (props.filter === "completed") {
+        tasksForTodoList = props.tasks.filter(t => t.isDone)
+    }
 
-    const addTask = (taskTitle: string) => {
+    const onAllClickHandler = useCallback(() => {
+        props.changeFilter(props.id, 'all')
+    }, [props.changeFilter, props.id])
+    const onActiveClickHandler = useCallback(() => {
+        props.changeFilter(props.id, 'active')
+    },[props.changeFilter, props.id])
+    const onCompletedClickHandler = useCallback(() => {
+        props.changeFilter(props.id, 'completed')
+    },[props.changeFilter, props.id])
+
+    const addTask = useCallback((taskTitle: string) => {
         props.addTask(taskTitle, props.id)
-    }
-    const changeTodolistTitle = (newTodolistTitle: string) => {
+    }, [props.addTask, props.id])
+    const changeTodolistTitle = useCallback((newTodolistTitle: string) => {
         props.changeTodolistTitle(newTodolistTitle, props.id)
-    }
+    },[props.changeTodolistTitle, props.id])
 
     const removeTodolist = () => props.removeTodolist(props.id)
 
@@ -49,26 +61,15 @@ export function Todolist(props: PropsType) {
             <AddItemForm addItem={addTask}/>
             <div>
                 {
-                    props.tasks.map((task) => {
-
-                        const onRemoveTaskHandler = () => props.removeTask(task.id, props.id)
-                        const changeChecked = (e: ChangeEvent<HTMLInputElement>) => {
-                            props.changeTaskStatus(task.id, e.target.checked, props.id)
-                        }
-                        const changeTitleTask = (newTaskTitle: string) => {
-                            props.changeTaskTitle(newTaskTitle, task.id, props.id)
-                        }
+                    tasksForTodoList.map((task) => {
 
                         return (
-                            <div key={task.id} className={task.isDone ? 'is-done' : ''}>
-                                <Checkbox checked={task.isDone}
-                                          color={'primary'}
-                                          onChange={changeChecked}/>
-                                <EditableSpan title={task.title} changeTitle={changeTitleTask}/>
-                                <IconButton onClick={onRemoveTaskHandler}>
-                                    <Delete/>
-                                </IconButton>
-                            </div>
+                            <Task task={task}
+                                  key={task.id}
+                                  todolistId={props.id}
+                                  changeTaskStatus={props.changeTaskStatus}
+                                  removeTask={props.removeTask}
+                                  changeTaskTitle={props.changeTaskTitle}/>
                         )
                     })
                 }
@@ -94,4 +95,6 @@ export function Todolist(props: PropsType) {
             </div>
         </div>
     )
-}
+})
+
+
