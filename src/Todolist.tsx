@@ -1,10 +1,11 @@
 import React, {ChangeEvent, useCallback} from "react";
-import {FilterValuesType, TaskType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 import {Button, Checkbox, IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
 import {Task} from "./Task";
+import {TaskStatuses, TaskType} from "./api/tasks-api";
+import {FilterValuesType} from "./AppWithRedux";
 
 type PropsType = {
     id: string
@@ -15,8 +16,8 @@ type PropsType = {
     addTask: (title: string, tlId: string) => void
     removeTask: (tlId: string, taskId: string) => void
     changeFilter: (todoListId: string, value: FilterValuesType) => void
-    changeTaskStatus: (id: string, isDone: boolean, tlId: string) => void
-    changeTodolistTitle: (newTodolistTitle: string, tlId: string) => void
+    changeTaskStatus: (id: string, status: TaskStatuses, tlId: string) => void
+    changeTodolistTitle: (tlId: string, newTodolistTitle: string) => void
     changeTaskTitle: (newTaskTitle: string, taskId: string, tlId: string) => void
 }
 
@@ -25,10 +26,10 @@ export const Todolist = React.memo((props: PropsType) => {
 
     let tasksForTodoList = props.tasks
     if (props.filter === 'active') {
-        tasksForTodoList = props.tasks.filter(t => !t.isDone)
+        tasksForTodoList = props.tasks.filter(t => !t.status)
     }
     if (props.filter === "completed") {
-        tasksForTodoList = props.tasks.filter(t => t.isDone)
+        tasksForTodoList = props.tasks.filter(t => t.status)
     }
 
     const onAllClickHandler = useCallback(() => {
@@ -45,7 +46,7 @@ export const Todolist = React.memo((props: PropsType) => {
         props.addTask(taskTitle, props.id)
     }, [props.addTask, props.id])
     const changeTodolistTitle = useCallback((newTodolistTitle: string) => {
-        props.changeTodolistTitle(newTodolistTitle, props.id)
+        props.changeTodolistTitle(props.id, newTodolistTitle)
     },[props.changeTodolistTitle, props.id])
 
     const removeTodolist = () => props.removeTodolist(props.id)
