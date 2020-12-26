@@ -27,39 +27,39 @@ function App() {
     let [tasks, setTasks] = useState<TasksStateType>({
         [todoListId1]: [
             {id: v1(), title: 'HTML&CSS',
-                status: TaskStatuses.Completed, description: null,
-                addedDate: '', deadline: null, order: 1, priority: 0,
-                startDate: null, todoListId: todoListId1},
+                status: TaskStatuses.Completed, description: '',
+                addedDate: '', deadline: '', order: 1, priority: 0,
+                startDate: '', todoListId: todoListId1},
             {id: v1(), title: 'JS',
-                status: TaskStatuses.Completed, description: null,
-                addedDate: '', deadline: null, order: 1, priority: 0,
-                startDate: null, todoListId: todoListId1},
+                status: TaskStatuses.Completed, description: '',
+                addedDate: '', deadline: '', order: 1, priority: 0,
+                startDate: '', todoListId: todoListId1},
             {id: v1(), title: 'ReactJS',
-                status: TaskStatuses.New, description: null,
-                addedDate: '', deadline: null, order: 1, priority: 0,
-                startDate: null, todoListId: todoListId1},
+                status: TaskStatuses.New, description: '',
+                addedDate: '', deadline: '', order: 1, priority: 0,
+                startDate: '', todoListId: todoListId1},
             {id: v1(), title: 'Redux',
-                status: TaskStatuses.New, description: null,
-                addedDate: '', deadline: null, order: 1, priority: 0,
-                startDate: null, todoListId: todoListId1},
+                status: TaskStatuses.New, description: '',
+                addedDate: '', deadline: '', order: 1, priority: 0,
+                startDate: '', todoListId: todoListId1},
             {id: v1(), title: 'RestApi',
-                status: TaskStatuses.New, description: null,
-                addedDate: '', deadline: null, order: 1, priority: 0,
-                startDate: null, todoListId: todoListId1},
+                status: TaskStatuses.New, description: '',
+                addedDate: '', deadline: '', order: 1, priority: 0,
+                startDate: '', todoListId: todoListId1},
         ],
         [todoListId2]: [
             {id: v1(), title: 'Bread',
-                status: TaskStatuses.Completed, description: null,
-                addedDate: '', deadline: null, order: 1, priority: 0,
-                startDate: null, todoListId: todoListId2},
+                status: TaskStatuses.Completed, description: '',
+                addedDate: '', deadline: '', order: 1, priority: 0,
+                startDate: '', todoListId: todoListId2},
             {id: v1(), title: 'Milk',
-                status: TaskStatuses.Completed, description: null,
-                addedDate: '', deadline: null, order: 1, priority: 0,
-                startDate: null, todoListId: todoListId2},
+                status: TaskStatuses.Completed, description: '',
+                addedDate: '', deadline: '', order: 1, priority: 0,
+                startDate: '', todoListId: todoListId2},
             {id: v1(), title: 'Book',
-                status: TaskStatuses.New, description: null,
-                addedDate: '', deadline: null, order: 1, priority: 0,
-                startDate: null, todoListId: todoListId2},
+                status: TaskStatuses.New, description: '',
+                addedDate: '', deadline: '', order: 1, priority: 0,
+                startDate: '', todoListId: todoListId2},
         ]
     })
 
@@ -97,8 +97,8 @@ function App() {
 
     function addTask(title: string, tlId: string) {
         const newTask: TaskType = {id: v1(), title: title, status: TaskStatuses.New,
-            addedDate: '', deadline: null, description: null,
-            order: 0, priority: 0, startDate: null, todoListId: tlId}
+            addedDate: '', deadline: '', description: '',
+            order: 0, priority: 0, startDate: '', todoListId: tlId}
         const todolist = tasks[tlId]
         tasks[tlId] = [newTask, ...todolist]
         setTasks({...tasks})

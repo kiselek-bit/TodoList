@@ -25,13 +25,13 @@ export enum TaskPriorities {
 export type TaskType = {
     id: string,
     title: string,
-    description: null,
+    description: string,
     todoListId: string,
     order: number,
     status: TaskStatuses,
     priority: number,
-    startDate: null,
-    deadline: null,
+    startDate: string,
+    deadline: string,
     addedDate: string
 }
 
@@ -51,7 +51,7 @@ export const tasksAPI = {
     getTasks(todolistId: string) {
         return instance.get<GetResponseType>(`todo-lists/${todolistId}/tasks`)
     },
-    createTask(todolistId: string, title: string) {
+    createTask(title: string, todolistId: string) {
         return instance.post<CommonResponseType<{item: TaskType}>>(`todo-lists/${todolistId}/tasks`, {title})
     },
     deleteTask(todolistId: string, taskId: string) {

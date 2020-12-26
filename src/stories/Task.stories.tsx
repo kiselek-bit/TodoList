@@ -28,7 +28,7 @@ TaskIsDoneExample.args = {
     ...baseArgs,
     todolistId: 'todolist1',
     task: {id: '1',title: 'HTML', status: TaskStatuses.Completed, todoListId: 'todolist1',
-        startDate: null, priority: TaskPriorities.Low, order: 0, description: null, deadline: null, addedDate: ''}
+        startDate: '', priority: TaskPriorities.Low, order: 0, description: '', deadline: '', addedDate: ''}
 }
 
 export const TaskIsNotDoneExample = Template.bind({});
@@ -36,5 +36,5 @@ TaskIsNotDoneExample.args = {
     ...baseArgs,
     todolistId: 'todolist1',
     task: {id: '2',title: 'CSS', status: TaskStatuses.New, todoListId: 'todolist1',
-        startDate: null, priority: TaskPriorities.Low, order: 0, description: null, deadline: null, addedDate: ''}
+        startDate: '', priority: TaskPriorities.Low, order: 0, description: '', deadline: '', addedDate: ''}
 }

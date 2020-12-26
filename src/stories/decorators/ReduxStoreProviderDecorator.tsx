@@ -21,21 +21,21 @@ const initialGlobalState: AppRootStateType = {
     tasks: {
         ["todoListId1"]: [
             {id: v1(), title: 'HTML&CSS', status: TaskStatuses.Completed,
-                todoListId: 'todoListId1', addedDate: '', deadline: null, description: null,
-                order: 0, priority: TaskPriorities.Low, startDate: null},
+                todoListId: 'todoListId1', addedDate: '', deadline: '', description: '',
+                order: 0, priority: TaskPriorities.Low, startDate: ''},
             {id: v1(), title: 'JS', status: TaskStatuses.Completed,
-                todoListId: 'todoListId1', addedDate: '', deadline: null, description: null,
-                order: 0, priority: TaskPriorities.Low, startDate: null},
+                todoListId: 'todoListId1', addedDate: '', deadline: '', description: '',
+                order: 0, priority: TaskPriorities.Low, startDate: ''},
         ],
         ["todoListId2"]: [
             {id: v1(), title: 'Bread',
-                status: TaskStatuses.Completed, description: null,
-                addedDate: '', deadline: null, order: 1, priority: TaskPriorities.Low,
-                startDate: null, todoListId: 'todoListId2'},
+                status: TaskStatuses.Completed, description: '',
+                addedDate: '', deadline: '', order: 1, priority: TaskPriorities.Low,
+                startDate: '', todoListId: 'todoListId2'},
             {id: v1(), title: 'Milk',
-                status: TaskStatuses.Completed, description: null,
-                addedDate: '', deadline: null, order: 1, priority: TaskPriorities.Low,
-                startDate: null, todoListId: 'todoListId2'},
+                status: TaskStatuses.Completed, description: '',
+                addedDate: '', deadline: '', order: 1, priority: TaskPriorities.Low,
+                startDate: '', todoListId: 'todoListId2'},
         ]
     }
 };
