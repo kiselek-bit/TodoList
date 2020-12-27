@@ -8,19 +8,6 @@ const instance = axios.create({
     }
 })
 
-export type TodolistType = {
-    id: string,
-    title: string,
-    addedDate: string,
-    order: number
-}
-
-type CommonResponseType<T = {}> = {
-    data: T
-    messages: Array<string>,
-    fieldsErrors: Array<string>,
-    resultCode: number
-}
 
 export const todolistsAPI = {
     getTodolists() {
@@ -35,4 +22,18 @@ export const todolistsAPI = {
     updateTodolist(todolistID: string, title: string) {
         return instance.put<CommonResponseType>(`todo-lists/${todolistID}`, {title})
     }
+}
+
+// types
+export type TodolistType = {
+    id: string,
+    title: string,
+    addedDate: string,
+    order: number
+}
+type CommonResponseType<T = {}> = {
+    data: T
+    messages: Array<string>,
+    fieldsErrors: Array<string>,
+    resultCode: number
 }

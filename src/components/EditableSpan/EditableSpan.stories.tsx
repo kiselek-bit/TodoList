@@ -2,10 +2,10 @@ import React from 'react';
 import {Story, Meta} from '@storybook/react/types-6-0';
 
 import {action} from "@storybook/addon-actions";
-import {EditableSpan, EditableSpanPropsType} from "../EditableSpan";
+import {EditableSpan, EditableSpanPropsType} from "./EditableSpan";
 
 export default {
-    title: 'Todolists/EditableSpan',
+    title: 'TodolistsList/EditableSpan',
     component: EditableSpan,
     argTypes: {
         changeTitle: {

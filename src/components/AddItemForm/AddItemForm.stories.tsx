@@ -1,11 +1,11 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import {AddItemForm, AddItemFormPropsType} from "../AddItemForm";
+import {AddItemForm, AddItemFormPropsType} from "./AddItemForm";
 import {action} from "@storybook/addon-actions";
 
 export default {
-    title: 'Todolists/AddItemForm',
+    title: 'TodolistsList/AddItemForm',
     component: AddItemForm,
     argTypes: {
         onClick: {

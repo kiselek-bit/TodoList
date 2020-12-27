@@ -8,45 +8,6 @@ const instance = axios.create({
     }
 })
 
-export enum TaskStatuses {
-    New = 0,
-    InProgress = 1,
-    Completed = 2,
-    Draft = 3
-}
-export enum TaskPriorities {
-    Low = 0,
-    Middle = 1,
-    High = 2,
-    Urgently = 3,
-    Later = 4
-}
-
-export type TaskType = {
-    id: string,
-    title: string,
-    description: string,
-    todoListId: string,
-    order: number,
-    status: TaskStatuses,
-    priority: number,
-    startDate: string,
-    deadline: string,
-    addedDate: string
-}
-
-type GetResponseType = {
-    items: Array<TaskType>
-    totalCount: number
-    error: null
-}
-type CommonResponseType<T = {}> = {
-    data: T
-    messages: Array<string>
-    fieldsErrors: Array<string>
-    resultCode: number
-}
-
 export const tasksAPI = {
     getTasks(todolistId: string) {
         return instance.get<GetResponseType>(`todo-lists/${todolistId}/tasks`)
@@ -60,4 +21,42 @@ export const tasksAPI = {
     updateTask(todolistId: string, taskId: string, task: any) {
         return instance.put<CommonResponseType<{item: TaskType}>>(`todo-lists/${todolistId}/tasks/${taskId}`, {...task})
     }
+}
+
+// types
+export enum TaskStatuses {
+    New = 0,
+    InProgress = 1,
+    Completed = 2,
+    Draft = 3
+}
+export enum TaskPriorities {
+    Low = 0,
+    Middle = 1,
+    High = 2,
+    Urgently = 3,
+    Later = 4
+}
+export type TaskType = {
+    id: string,
+    title: string,
+    description: string,
+    todoListId: string,
+    order: number,
+    status: TaskStatuses,
+    priority: number,
+    startDate: string,
+    deadline: string,
+    addedDate: string
+}
+type GetResponseType = {
+    items: Array<TaskType>
+    totalCount: number
+    error: null
+}
+type CommonResponseType<T = {}> = {
+    data: T
+    messages: Array<string>
+    fieldsErrors: Array<string>
+    resultCode: number
 }

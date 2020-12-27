@@ -3,7 +3,7 @@ import {Story, Meta} from '@storybook/react/types-6-0';
 import {todolistsAPI} from "../../api/todolists-api";
 
 export default {
-    title: 'Todolists/API',
+    title: 'TodolistsList/API',
     argTypes: {}
 } as Meta;
 

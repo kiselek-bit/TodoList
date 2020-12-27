@@ -1,10 +1,9 @@
 import {
-    addTodolistAC, changeTodoListFilterAC, changeTodoListTitleAC,
+    addTodolistAC, changeTodoListFilterAC, changeTodoListTitleAC, FilterValuesType,
     removeTodoListAC, TodolistDomainType,
     todolistReducer
 } from './todolist-reducer';
 import {v1} from 'uuid';
-import {FilterValuesType} from '../AppWithRedux';
 
 let startState: Array<TodolistDomainType>
 let todolistId1: string

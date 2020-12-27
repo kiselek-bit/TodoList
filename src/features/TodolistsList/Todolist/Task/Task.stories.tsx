@@ -2,11 +2,11 @@ import React from 'react';
 import {Meta, Story} from '@storybook/react/types-6-0';
 
 import {action} from "@storybook/addon-actions";
-import {PropsTaskType, Task} from "../Task";
-import {TaskPriorities, TaskStatuses} from "../api/tasks-api";
+import {PropsTaskType, Task} from "./Task";
+import {TaskPriorities, TaskStatuses} from "../../../../api/tasks-api";
 
 export default {
-    title: 'Todolists/Task',
+    title: 'TodolistsList/Task',
     component: Task
 } as Meta;
 
