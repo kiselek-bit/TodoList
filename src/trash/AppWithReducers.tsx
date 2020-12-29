@@ -27,41 +27,41 @@ function AppWithReducers() {
     const todoListId1 = v1()
     const todoListId2 = v1()
     let [todoLists, dispatchToTodolist] = useReducer(todolistReducer, [
-        {id: todoListId1, title: 'What to learn', filter: 'all', addedDate: '', order: 0},
-        {id: todoListId2, title: 'What to buy', filter: 'all', addedDate: '', order: 0}
+        {id: todoListId1, title: 'What to learn', filter: 'all', addedDate: '', order: 0, entityStatus: "idle"},
+        {id: todoListId2, title: 'What to buy', filter: 'all', addedDate: '', order: 0, entityStatus: "idle"}
     ])
 
     let [tasks, dispatchToTasks] = useReducer(tasksReducer, {
         [todoListId1]: [
             {id: v1(), title: 'HTML&CSS', status: TaskStatuses.Completed,
             todoListId: todoListId1, addedDate: '', deadline: '', description: '',
-            order: 0, priority: TaskPriorities.Low, startDate: ''},
+            order: 0, priority: TaskPriorities.Low, startDate: '', entityStatus: "idle"},
             {id: v1(), title: 'JS', status: TaskStatuses.Completed,
                 todoListId: todoListId1, addedDate: '', deadline: '', description: '',
-                order: 0, priority: TaskPriorities.Low, startDate: ''},
+                order: 0, priority: TaskPriorities.Low, startDate: '', entityStatus: "idle"},
             {id: v1(), title: 'React', status: TaskStatuses.Completed,
                 todoListId: todoListId1, addedDate: '', deadline: '', description: '',
-                order: 0, priority: TaskPriorities.Low, startDate: ''},
+                order: 0, priority: TaskPriorities.Low, startDate: '', entityStatus: "idle"},
             {id: v1(), title: 'Redux', status: TaskStatuses.Completed,
                 todoListId: todoListId1, addedDate: '', deadline: '', description: '',
-                order: 0, priority: TaskPriorities.Low, startDate: ''},
+                order: 0, priority: TaskPriorities.Low, startDate: '', entityStatus: "idle"},
             {id: v1(), title: 'Thunk', status: TaskStatuses.Completed,
                 todoListId: todoListId1, addedDate: '', deadline: '', description: '',
-                order: 0, priority: TaskPriorities.Low, startDate: ''},
+                order: 0, priority: TaskPriorities.Low, startDate: '', entityStatus: "idle"},
         ],
         [todoListId2]: [
             {id: v1(), title: 'Bread',
                 status: TaskStatuses.Completed, description: '',
                 addedDate: '', deadline: '', order: 1, priority: TaskPriorities.Low,
-                startDate: '', todoListId: todoListId2},
+                startDate: '', todoListId: todoListId2, entityStatus: "idle"},
             {id: v1(), title: 'Milk',
                 status: TaskStatuses.Completed, description: '',
                 addedDate: '', deadline: '', order: 1, priority: TaskPriorities.Low,
-                startDate: '', todoListId: todoListId2},
+                startDate: '', todoListId: todoListId2, entityStatus: "idle"},
             {id: v1(), title: 'Book',
                 status: TaskStatuses.New, description: '',
                 addedDate: '', deadline: '', order: 1, priority: TaskPriorities.Low,
-                startDate: '', todoListId: todoListId2},
+                startDate: '', todoListId: todoListId2, entityStatus: "idle"},
         ]
     })
 
@@ -142,6 +142,7 @@ function AppWithReducers() {
                                             filter={tl.filter}
                                             removeTask={removeTask}
                                             tasks={tasksForTodoList}
+                                            entityStatus={tl.entityStatus}
                                             changeFilter={changeFilter}
                                             removeTodolist={removeTodoList}
                                             changeTaskTitle={changeTaskTitle}

@@ -1,14 +1,13 @@
 import React, {ChangeEvent, useState} from "react";
-import {TextFields} from "@material-ui/icons";
 import {TextField} from "@material-ui/core";
 
 export type EditableSpanPropsType = {
     title: string
     changeTitle: (newTitle: string) => void
+    disabled?: boolean
 }
 
 export const EditableSpan = React.memo((props: EditableSpanPropsType) => {
-    console.log('EditableSpan')
 
     let [editMode, setEditMode] = useState<boolean>(false)
     let [title, setTitle] = useState<string>(props.title)
@@ -28,7 +27,7 @@ export const EditableSpan = React.memo((props: EditableSpanPropsType) => {
     }
 
     return (
-        editMode ?
+        editMode && !props.disabled ?
             <TextField value={title}
                    onBlur={onBlurClickHandler}
                    onChange={onChangeInput}
