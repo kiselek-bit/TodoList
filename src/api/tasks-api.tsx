@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {RequestStatusType} from "../app/app-reducer";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
@@ -58,7 +57,7 @@ type GetResponseType = {
     totalCount: number
     error: null
 }
-type CommonResponseType<T = {}> = {
+export type CommonResponseType<T = {}> = {
     data: T
     messages: Array<string>
     fieldsErrors: Array<string>

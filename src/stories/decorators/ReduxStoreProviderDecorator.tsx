@@ -7,12 +7,14 @@ import {v1} from "uuid";
 import {todolistReducer} from "../../features/TodolistsList/todolist-reducer";
 import {TaskPriorities, TaskStatuses} from "../../api/tasks-api";
 import {appReducer} from "../../app/app-reducer";
+import {authReducer} from "../../features/Login/auth-reducer";
 
 
 const rootReducer = combineReducers({
     tasks: tasksReducer,
     todolists: todolistReducer,
-    app: appReducer
+    app: appReducer,
+    auth: authReducer,
 })
 
 const initialGlobalState: AppRootStateType = {
@@ -40,7 +42,8 @@ const initialGlobalState: AppRootStateType = {
                 startDate: '', todoListId: 'todoListId2', entityStatus: "idle"},
         ]
     },
-    app: {status: "failed", error: null},
+    app: {status: "failed", error: null, initialized: false},
+    auth: {isLoggedIn: false}
 };
 
 export const storyBookStore = createStore(rootReducer, initialGlobalState);

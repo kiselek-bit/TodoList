@@ -48,6 +48,7 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
             return stateCopy;
         }
         case 'SET-TASKS':
+            debugger
             return {...state, [action.todolistId]: action.tasks.map(t => ({...t, entityStatus: 'idle'}))}
         case "CHANGE-TASK-ENTITY-STATUS":
             return {...state, [action.todolistId]: state[action.todolistId]
@@ -79,10 +80,12 @@ export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch<ActionTy
     dispatch(setAppStatusAC('loading'))
     tasksAPI.getTasks(todolistId)
         .then(res => {
+            debugger
             dispatch(setTasksAC(res.data.items, todolistId))
             dispatch(setAppStatusAC('succeeded'))
         })
         .catch(error => {
+            debugger
             handleServerNetworkError(error, dispatch)
         })
 }
